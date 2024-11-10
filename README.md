@@ -52,3 +52,4 @@ When you installed Git and cloned the remote repository in week 1, you should ha
 ---inrender.com / PostgreSQL
 build command => pnpm install
 start command => pmpn start
+run the terminal => 

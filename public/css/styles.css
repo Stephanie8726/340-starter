@@ -1,8 +1,186 @@
 /******* Change Box Model ***************/
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
+
+html {
+  background-image: url('/images/site/small_check.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100%; 
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 2rem auto;
+  padding: 50px;
+  border: 2px solid blue;
+  background-color: white;
+  max-width: 90%;
+  width: 100%;
+  min-height: 100vh;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: black;
+  font-weight: bold;
+}
+
+.siteName a{
+  font-size: 30px;
+  color: black;
+  text-decoration: none;
+  margin-bottom: 200px;
+}
+
+#tools a{
+  color: black;
+  text-decoration: none;
+  margin-bottom: 200px;
+}
+
+#tools a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+nav{
+  background-color: black;
+  color: white;
+  margin-top: 25px;
+}
+
+nav ul {
+  display: flex;
+  justify-content:space-around;
+  list-style-type: none; 
+  padding-left: 0; 
+  padding: 10px;
+}
+
+nav a{
+  gap: 10px;
+}
+
+.dolerean-img-container{
+  display: flex;
+  justify-content:flex-start;
+}
+
+.own-today-msg {
+  color: navy;
+  width: 180px;
+  padding: 20px;
+  margin: 20px;
+  background-color: rgba(247, 250, 251, 0.2);
+  background-color: rgba(242, 240, 241, 0.4);
+  position: relative;
+}
+
+.own-today-msg img{
+  width: 110px;
+  height: auto;
+}
+
+.dolerean img{
+  width: 400px;
+  height: auto;
+  margin-left: -110px;
+  margin-bottom: -240px;
+}
+
+.dolerean-reviews-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.dolerean-upgrades {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.dolerean-reviews ul {
+  padding: 0;
+}
+
+.dolerean-reviews li {
+  margin-bottom: 10px;
+} */
+
+
+ figure{
+  border: 1px solid black;
+  background-color: rgb(28, 85, 151);
+  text-align: center;
+  width: 180px;
+  border-radius: 4px;
+ }
+
+ figcaption{
+  text-decoration: underline;
+ }
+
+.dolerean-reviews {
+  line-height: 1.5;
+  margin-top: -70px;
+}
+
+figure {
+  background-color: rgb(124, 180, 233);
+  border: 1px solid black;
+  text-align: center;
+  border-radius: 4px;
+}
+
+footer{
+  margin-top: 200px;
+}
+
+@media screen and (max-width: 600px){
+
+  .own-today-msg{
+    width: 120px;
+    height: auto;
+    font-size: 12px;
+  }
+
+  .own-today-msg img{
+    width: 80px;
+    height: auto;
+  }
+
+  .dolerean img{
+    width: 300px;
+    height: auto;
+    margin-bottom: -200px;
+  }
+
+  .dolerean-reviews-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+    .dolerean-upgrades {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .dolerean-reviews {
+      margin-top: 20px;
+    }
+    .dolerean-reviews {
+        display: block;
+        margin-top: 5px;
+    }
+}
+
+  
