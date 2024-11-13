@@ -102,12 +102,12 @@ nav a{
 
 .dolerean-reviews {
   flex: 1 1 45%; 
+  margin-left: 50px;
 }
 
 .dolerean-upgrades {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 200px);
   margin-bottom: 50px; 
 }
 
