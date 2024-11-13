@@ -1,6 +1,4 @@
-/******* Change Box Model ***************/
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
+/* ******* Change Box Model *************** */
 *,
 *:before,
 *:after {
@@ -16,10 +14,9 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
   margin: 2rem auto;
   padding: 50px;
-  border: 2px solid blue;
+  border: 3px solid rgb(116, 173, 214);
   background-color: white;
   max-width: 90%;
   width: 100%;
@@ -98,15 +95,20 @@ nav a{
 }
 
 .dolerean-reviews-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+}
+
+.dolerean-reviews {
+  flex: 1 1 45%; 
 }
 
 .dolerean-upgrades {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  margin-bottom: 50px; 
 }
 
 .dolerean-reviews ul {
@@ -115,7 +117,7 @@ nav a{
 
 .dolerean-reviews li {
   margin-bottom: 10px;
-} */
+} 
 
 
  figure{
@@ -147,7 +149,6 @@ footer{
 }
 
 @media screen and (max-width: 600px){
-
   .own-today-msg{
     width: 120px;
     height: auto;
@@ -165,21 +166,19 @@ footer{
     margin-bottom: -200px;
   }
 
-  .dolerean-reviews-container {
-    display: flex;
-    flex-direction: column;
-  }
-
+    .dolerean-reviews-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100vh; 
+    }
+  
     .dolerean-upgrades {
-      grid-template-columns: 1fr 1fr;
+      order: 1; 
     }
   
     .dolerean-reviews {
-      margin-top: 20px;
-    }
-    .dolerean-reviews {
-        display: block;
-        margin-top: 5px;
+      order: 2;
     }
 }
 

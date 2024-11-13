@@ -34,7 +34,7 @@ app.use(static)
 * }) => The right curly brace closes the function, while the right parentheses closes the "get" route.
  *************************/
 app.get("/", function(req, res){
-  res.render("index", {title: "CSE 340 App"})
+  res.render("index", {title: "Home"})
 })
 
 /* ***********************
