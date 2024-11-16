@@ -27,6 +27,7 @@ inv_model character varying NOT NULL,
 inv_year character (4) NOT NULL,
 inv_description text NOT NULL,
 inv_image character varying NOT NULL,
+inv_thumbnail character varying NOT NULL
 inv_price numeric (9, 0) NOT NULL,
 inv_miles integer NOT NULL,
 inv_color character varying NOT NULL,
@@ -62,6 +63,15 @@ CREATE TABLE IF NOT EXISTS public.account
     account_type account_type NOT NULL DEFAULT 'Client'::account_type,
     CONSTRAINT account_pkey PRIMARY KEY (account_id)
 );
+
+
+-- Data for table 'classification'
+INSERT INTO public.classification (classification_name)
+VALUES ('Custom'),
+	('Sport'),
+	('SUV'),
+	('Truck'),
+	('Sedan');
 
 
 -- Data for table `inventory`
@@ -246,3 +256,15 @@ VALUES   (
   );
 
 
+-- 4.) Modify the "GM Hummer" record
+UPDATE public.inventory
+SET inv_description = REPLACE(inv_description, 'Do you have 6 kids and like to go offroading? The Hummer gives you the small interiors with an engine to get you out of any muddy or rocky situation.',
+'Do you have 6 kids and like to go offroading? The Hummer gives you a huge interior with an engine to get you out of any muddy or rocky situation.')
+WHERE inv_make = 'GM' AND inv_model = 'Hummer';
+
+
+-- 6.) Update all records in the inventory table
+UPDATE public.inventory
+SET
+    inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
