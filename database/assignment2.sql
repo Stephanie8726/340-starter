@@ -26,9 +26,9 @@ WHERE account_email = 'tony@starkent.com';
 
 -- 4.) Modify the "GM Hummer" record
 UPDATE public.inventory
-SET inv_description = REPLACE(inv_description, 'Do you have 6 kids and like to go offroading? The Hummer gives you the small interiors with an engine to get you out of any muddy or rocky situation.',
-'Do you have 6 kids and like to go offroading? The Hummer gives you a huge interior with an engine to get you out of any muddy or rocky situation.')
+SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interior')
 WHERE inv_make = 'GM' AND inv_model = 'Hummer';
+
 
 
 -- 5.) Inner join to select the make and model fields from the inventory table and the classification name
