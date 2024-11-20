@@ -10,6 +10,9 @@ const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+const baseController = require("./controllers/baseController")
+const inventoryRoute = require("./routes/inventoryRoute")
+
 
 /* ***********************
  * View Engine and Templates
@@ -22,7 +25,7 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
-app.use(static)
+// app.use(static)
 
 /* ***********************
 *** Index router
@@ -33,9 +36,17 @@ app.use(static)
 * {title: "Home" } => The curly braces are an object (treated like a variable), which holds a name - value pair. This object supplies the value that the "head" partial file expects to receive. The object is passed to the view.
 * }) => The right curly brace closes the function, while the right parentheses closes the "get" route.
  *************************/
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
+
+// This was changed
+// app.get("/", function(req, res){
+//   res.render("index", {title: "Home"})
+// })
+
+// update index route (week 3)
+app.get("/", baseController.buildHome)
+
+// Inventory routes
+app.use("/inv", inventoryRoute)
 
 /* ***********************
  * Local Server Information
