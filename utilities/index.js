@@ -81,16 +81,36 @@ Util.buildClassificationGrid = async function (data) {
 /* ****************************************
  * week3 => build the vehicle detail view HTML
  **************************************** */
-Util.buildVehicleHTML = async function(vehicle) {
+Util.buildVehicleHTML = async function (vehicle) {
+  console.log(vehicle);
+    vehicle.inv_miles && !isNaN(vehicle.inv_miles)
+      ? new Intl.NumberFormat("en-US").format(vehicle.inv_miles)
+      : "Miles data unavailable";
+
   return `
     <div class="vehicle-detail">
-        <img src="${vehicle.inv_image}" alt="${vehicle.inv_make} ${vehicle.inv_model}" class="vehicle-detail-image">
-        <h2 class="vehicle-detail-title">${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>
-        <p class="vehicle-detail-price">Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
-        <p class="vehicle-detail-mileage">Mileage: ${new Intl.NumberFormat('en-US').format(vehicle.inv_mileage)} miles</p>
-        <p class="vehicle-detail-description">Description: ${vehicle.inv_description}</p>
+        <img src="${vehicle.inv_image}" alt="${vehicle.inv_make} ${
+    vehicle.inv_model
+  }" class="vehicle-detail-image">
+        <div class="vehicle-info-wrapper">
+        <h2 class="vehicle-detail-title">
+  <span class="vehicle-year-make-model">${vehicle.inv_year} ${vehicle.inv_make} ${
+    vehicle.inv_model
+  }</span>
+  <span class="vehicle-detail-price">$${new Intl.NumberFormat("en-US").format(
+    vehicle.inv_price
+  )}</span>
+</h2>
+<p class="vehicle-detail-mileage">
+  <span class="mileage-label">MILEAGE</span> <br>
+  <span class="mileage-value">${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</span>
+</p>
+
+        <p class="vehicle-detail-description">${
+          vehicle.inv_description
+        }</p>
+        </div>
     </div>
   `;
 };
-
 module.exports = Util;

@@ -1,0 +1,6 @@
+// route to intentionally generate an error
+app.get('/generate-error', (req, res, next) => {
+    const error = new Error('This is a test error for demonstration purposes.');
+    error.status = 500; 
+    next(error);
+});
