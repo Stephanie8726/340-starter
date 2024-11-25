@@ -147,6 +147,97 @@ footer{
   margin-top: 200px;
 }
 
+/* ============ Week3 - style for each car  ================= */
+/* Navigation */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding: 0;
+}
+
+.nav-item {
+  font-size: 18px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* classification Grid */
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.vehicle-item {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.vehicle-thumbnail {
+  width: 100%;
+  height: auto;
+}
+
+.name-price {
+  padding: 15px;
+}
+
+.vehicle-title {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.vehicle-price {
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* cehicle Detail */
+.vehicle-detail {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-detail-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.vehicle-detail-title {
+  font-size: 24px;
+  color: #333;
+}
+
+.vehicle-detail-price {
+  font-size: 20px;
+  color: #28a745;
+}
+
+.vehicle-detail-mileage,
+.vehicle-detail-description {
+  font-size: 16px;
+  color: #666;
+  margin: 10px 0;
+}
+
+
 @media screen and (max-width: 600px){
   .own-today-msg{
     width: 120px;

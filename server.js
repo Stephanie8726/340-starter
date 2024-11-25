@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
+// const errorMiddleware = require('./middleware/errorMiddleware'); // week3
 
 
 /* ***********************
@@ -22,6 +23,8 @@ const utilities = require("./utilities/")
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
+// app.use(errorMiddleware.errorHandler); // week3
+
 
 /* ***********************
  * Routes

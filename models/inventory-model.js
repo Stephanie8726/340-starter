@@ -1,10 +1,12 @@
-const pool = require("../database/") // imports the database connection file (named index.js) from the database folder
+const pool = require("../database/");
 
 /* ***************************
- *  Get all classification data. Creates an "asynchronous" function, named getClassifications. An asynchronous function returns a promise, 
+ *  Get all classification data
  * ************************** */
-async function getClassifications(){
-  return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
+async function getClassifications() {
+  return await pool.query(
+    "SELECT * FROM public.classification ORDER BY classification_name"
+  );
 }
 
 /* ***************************
@@ -14,17 +16,31 @@ async function getInventoryByClassificationId(classification_id) {
   try {
     const data = await pool.query(
       `SELECT * FROM public.inventory AS i 
-      JOIN public.classification AS c 
-      ON i.classification_id = c.classification_id 
-      WHERE i.classification_id = $1`,
+        JOIN public.classification AS c 
+        ON i.classification_id = c.classification_id 
+        WHERE i.classification_id = $1`,
       [classification_id]
-    )
-    return data.rows
+    );
+    return data.rows;
   } catch (error) {
-    console.error("getclassificationsbyid error " + error)
+    console.error("getInventoryByClassificationId error " + error);
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId};
+async function getVehicleById(vehicleId) {
+  try {
+    const result = await pool.query(
+      `SELECT * From public.inventory WHERE inv_id = $1`,
+      [vehicleId]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error fetching vehicle by Id:" + error);
+  }
+}
 
-// module.exports = {getClassifications} 
+module.exports = {
+  getClassifications,
+  getInventoryByClassificationId,
+  getVehicleById,
+};

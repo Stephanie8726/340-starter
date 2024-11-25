@@ -1,5 +1,8 @@
 const express = require('express'); // assigned to a local variable
 const router = express.Router(); // stored into a local variable for use => Router is a function
+const invCont = require("../controllers/invController"); // week3
+
+router.get("/inventory/:inventory_id", invCont.getVehicleDetail); // week3
 
 // Static Routes
 // Set up "public" folder / subfolders for static files
