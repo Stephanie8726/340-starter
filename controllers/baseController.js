@@ -7,10 +7,4 @@ baseController.buildHome = async function(req, res){
   // req.flash("notice", "This is a flash message.")
 }
 
-// baseController.buildRegister = async function(req, res){
-//   const nav = await utilities.getNav() //  creates an empty object named baseController under utilities > index.js
-//   res.render("index", {title: "Home", nav})
-//     req.flash("notice", "Congratulations, you\'re registered ${account_firstname}. Please log in.")
-// }
-
 module.exports = baseController

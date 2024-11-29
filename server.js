@@ -19,15 +19,6 @@ const accountRoute = require('./routes/accountRoute'); //week 4
 const bodyParser = require("body-parser") // week 4
 
 
-// const accountSuccessful = require('./account/loginSuccessful')
-
-// const accountController = require("./controllers/accountController") // week4
-// const errorMiddleware = require('./middleware/errorMiddleware'); // week3
-
-// app.use("/account", require ("./routes/accountRoute")) //week 4
-
-
-// app.use(errorMiddleware.errorHandler) // week
 /* ***********************
  * Middleware
  * ************************/
@@ -87,7 +78,6 @@ app.use("/inv", inventoryRoute)
 
 // week 4 - account routes
 app.use("/account", require("./routes/accountRoute"))
-// app.use("/controller", require("./controllers/accountController"))
 
 app.use('/account', utilities.handleErrors(accountRoute)) //week4 added
 
