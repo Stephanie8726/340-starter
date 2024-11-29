@@ -113,4 +113,20 @@ Util.buildVehicleHTML = async function (vehicle) {
     </div>
   `;
 };
-module.exports = Util;
+
+// week4 => error handling middleware
+function handleErrors(handler) {
+  return async (req, res, next) => {
+    try {
+      await handler(req, res, next);
+    } catch (err) {
+      next(err); 
+    }
+  };
+}
+
+
+module.exports = {
+  ...Util, 
+  handleErrors,
+};

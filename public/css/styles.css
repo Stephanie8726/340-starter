@@ -268,6 +268,12 @@ footer{
 }
 
 
+/* -----------------WEEK 4 => login.ejs-------------------- */
+#flash-message{
+  color: red;
+}
+
+
 @media screen and (max-width: 600px){
   .own-today-msg{
     width: 120px;
