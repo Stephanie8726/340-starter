@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const accountController = require("../controllers/accountController");
 const utilities = require("../utilities");
+const regValidate = require('../utilities/account-validation')
 
 // week4 => deliver login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
@@ -15,6 +16,8 @@ router.get(
 // week4 => process registration
 router.post(
   "/register",
+  regValidate.registationRules(),
+  regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
 );
 
