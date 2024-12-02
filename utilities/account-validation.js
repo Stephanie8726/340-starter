@@ -33,20 +33,6 @@ validate.registationRules = () => {
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required."),
 
-    //   body("account_email")
-    //   .trim()
-    //   .escape()
-    //   .notEmpty()
-    //   .isEmail()
-    //   .normalizeEmail()
-    //   .bail()
-    //   .custom(async (email) => {
-    //     const emailExists = await isEmailInUse(email)
-    //     if (emailExists) {
-    //       throw new Error("Email already exists. Please use a different email.")
-    //     }
-    //   }),
-
       // password is required and must be strong password
       body("account_password")
         .trim()

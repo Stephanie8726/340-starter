@@ -39,8 +39,46 @@ async function getVehicleById(vehicleId) {
   }
 }
 
+
+/* ***************************
+ * W04 Assignment: Adding New Classifications and Vehicles
+ * Adding new classification
+ * ************************** */
+async function addClassification(classification_name) {
+  try {
+    const result = await pool.query(
+      `INSERT INTO public.classification (classification_name) 
+       VALUES ($1) RETURNING *`, 
+      [classification_name]
+    );
+    return result.rows[0]; 
+  } catch (error) {
+    console.error("Error adding classification:", error);
+    throw error; 
+  }
+}
+
+/* ***************************
+ * Adding new inventory 
+ * ************************** */
+async function addInventory(inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id) {
+  try {
+    const result = await pool.query(
+      `INSERT INTO public.inventory (inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`, 
+      [inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error adding inventory item:", error);
+    throw error;
+  }
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getVehicleById,
+  addClassification,
+  addInventory
 };

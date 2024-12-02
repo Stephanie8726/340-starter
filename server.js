@@ -60,6 +60,7 @@ app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
 app.use('/account', accountRoute); // week 4
 
+
 /* ***********************
 *** Index router
 * app.get => the expresses application will watch the "get" object, within the HTTP Request, for a particular route.

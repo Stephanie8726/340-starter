@@ -9,4 +9,11 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 // week3 accessing the specific vehicle detail based on its inventory_id
 router.get('/detail/:inventory_id', invController.getVehicleDetail);
 
+// W04 Assignment: Adding New Classifications and Vehicles
+router.get("/", invController.management);
+router.get("/addClassification", invController.addClassificationForm);
+router.post("/addClassification", invController.processAddClassification);
+router.get("/addInventory", invController.addInventoryForm);
+router.post("/addInventory", invController.processAddInventory);
+
 module.exports = router;

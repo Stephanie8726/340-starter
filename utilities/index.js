@@ -125,6 +125,19 @@ function handleErrors(handler) {
   };
 }
 
+// WEEK 4 => build classificationList
+Util.buildClassificationList = async function () {
+  let data = await invModel.getClassifications();
+  console.log(data.rows)
+  let options = "";
+  data.rows.forEach((row) => {
+    options += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+  })
+   let select = `<select name="classification_id">${options}</select>`
+  return select;
+};
+
+
 
 module.exports = {
   ...Util, 

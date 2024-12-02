@@ -23,7 +23,7 @@ router.post(
 
 router.post(
   "/login", 
-  utilities.handleErrors(accountController.handleLogin)); // handle login form submission
+  utilities.handleErrors(accountController.handleLogin));
 
 module.exports = router;
 
