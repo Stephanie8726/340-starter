@@ -17,7 +17,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
 const accountRoute = require('./routes/accountRoute'); //week 4
 const bodyParser = require("body-parser") // week 4
-
+const generateErrorRoute = require("./routes/generateErrorRoute");
 
 /* ***********************
  * Middleware
@@ -59,6 +59,12 @@ app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
 app.use('/account', accountRoute); // week 4
+
+
+/* ***********************
+ * Generate error week 3
+ *************************/
+app.use('/generate-error', generateErrorRoute)
 
 
 /* ***********************

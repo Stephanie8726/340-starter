@@ -177,6 +177,12 @@ footer{
   list-style: none;
 }
 
+/* .vehicle-detail img {
+  width: 100%; 
+  max-width: 500px;
+  height: auto; 
+} */
+
 .vehicle-item {
   background-color: #fff;
   border: 1px solid #ccc;
@@ -209,16 +215,16 @@ footer{
   gap: 20px; 
   margin: 20px; 
   align-items: center;
-  margin-bottom: 20px;
+  padding: 20px;  
 }
 
-.vehicle-detail-image {
+.vehicle-detail-image{
   width: 100%;
   height: auto;
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} 
 
 .vehicle-info-wrapper{
   background-color: #f4f3f3;
@@ -267,12 +273,85 @@ footer{
   margin-top: 10px; 
 }
 
-
-/* -----------------WEEK 4 => login.ejs-------------------- */
-#flash-message{
-  color: red;
+/* ------week 4 Register.ejs form--------- */
+form{
+  align-items: center;
+  margin: 1rem auto;
+  box-shadow: 1px 1px 4px #6ce7ba;
+  padding: 20px;
+  max-width: 500px;
+  height: 50vh;
+  border-radius: 6px;
 }
 
+.account label{
+  display: block;
+  padding-top: 1rem;
+  font-size: .9rem;
+}
+
+.account input[type="text"],
+.account input[type="password"],
+.account select,
+.account input[type="email"]
+{
+  background-color: #eee;
+  display: block;
+  border: solid 1px #999;
+  border-radius: 6px;
+  padding: .75rem;
+  width: 100%;
+  max-width: 400px;
+  appearance: none;
+}
+
+.account select{
+  max-width: 434px;
+}
+
+.account button[type="submit"]{
+  border: none;
+  background-image: linear-gradient(#69e8c6, #3bdfc7);
+  border-radius: 6px;
+  padding: .75rem;
+  margin-top: 20px;
+  box-shadow: 1px 1px 4px #999;
+  align-items: center;
+  font-weight: bold;
+  animation: fade 15s;
+  width: 400px;
+}
+
+ 
+.account button[type="submit"]:hover {
+  transform: translateY(-2.5px); 
+  filter: brightness(1.2);
+  font-family: cursive;
+}
+
+.account input:required,
+.account select:required {
+  border-left: solid 8px #e51c1c;
+}
+
+.account input:required:valid,
+.account select:required:valid {
+  border-left: solid 8px green;
+}
+
+.account p{
+  font-weight: bold;
+  font-size: 24px;
+}
+
+/* -----------------WEEK 4 => login.ejs FLASH-MESSAGE-------------------- */
+.notice {
+  list-style: none;
+  color: red;
+}
+.notice li {
+  margin: 5px 0;
+}
 
 @media screen and (max-width: 600px){
   .own-today-msg{
@@ -308,4 +387,14 @@ footer{
     }
 }
 
-  
+/* week 3 => making the vehicle detail page responsive */
+/* .vehicle-detail-image{
+  max-width: 80%; 
+} */
+
+.vehicle-detail{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 15px;
+}

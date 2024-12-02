@@ -11,7 +11,7 @@
 
             <% if (errors) { %>
               <ul class="notice">
-                <% errors.array().forEach(error => { %>
+                <% errors.array().forEach(error=> { %>
                   <li>
                     <%= error.msg %>
                   </li>
@@ -19,36 +19,35 @@
               </ul>
               <% } %>
 
-                <form action="/account/register" method="post">
-                  <fieldset>
-                    <legend>ALL FIELDS ARE REQUIRED</legend>
+                <form action="/account/register" method="post" class="account">
+                  <p>ALL FIELDS ARE REQUIRED</p>
 
-                    <label for="firstname">*First Name:</label>
-                    <input type="text" name="account_firstname" id="firstname" size="10" required
-                      value="<%= locals.account_firstname || '' %>">
+                  <label for="firstname">*First Name:</label>
+                  <input type="text" name="account_firstname" id="firstname" size="10" required
+                    value="<%= locals.account_firstname || '' %>">
 
-                    <label for="lastname">*Last Name:</label>
-                    <input type="text" name="account_lastname" id="lastname" required
-                      value="<%= locals.account_lastname || '' %>">
+                  <label for="lastname">*Last Name:</label>
+                  <input type="text" name="account_lastname" id="lastname" required
+                    value="<%= locals.account_lastname || '' %>">
 
-                    <label for="email">*Email Address:</label>
-                    <input type="email" name="account_email" id="email" required
-                      value="<%= locals.account_email %>">
+                  <label for="email">*Email Address:</label>
+                  <input type="email" name="account_email" id="email" required value="<%= locals.account_email %>">
 
-                    <label for="password">*Password:</label>
-                    <input type="password" name="account_password" id="password" required
-                      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                  <label for="password">*Password:</label>
+                  <input type="password" name="account_password" id="password" required
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
-                    <div>
-                      <i>Passwords must be at least 12 characters and contain 1 number, 1 capital letter, and 1 special
-                        character.</i>
-                    </div>
-
-                    <div id="pswdBtn">Show Password</div>
-
-                    <button type="submit">Register</button>
+                  <div>
+                    <i>Passwords must be at least 12 characters and contain 1 number, 1 capital letter, and 1 special
+                      character.</i>
+                  </div>
 
 
-                  </fieldset>
+                  <label>
+                    <input type="checkbox" id="show-password"> Show Password
+                  </label>
+
+                  <button type="submit">Register</button>
                 </form>
-                <script src="js/script.js"></script>
+                
+                <script src="/js/script.js"></script>

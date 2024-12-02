@@ -35,9 +35,10 @@ invCont.getVehicleDetail = async function (req, res, next) {
     const vehicleHTML = await utilities.buildVehicleHTML(vehicle);
     let nav = await utilities.getNav();
 
+    console.log("=> ", JSON.stringify(vehicle))
     // render the view with the vehicle details
     res.render("inventory/vehicle-detail", {
-      title: `${vehicle.make} ${vehicle.model}`,
+      title: `${vehicle.inv_make} ${vehicle.inv_model}`,
       nav,
       vehicleHTML,
       vehicle,

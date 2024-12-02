@@ -134,6 +134,7 @@ Util.buildClassificationList = async function () {
     options += `<option value="${row.classification_id}">${row.classification_name}</option>`;
   })
    let select = `<select name="classification_id">${options}</select>`
+
   return select;
 };
 
