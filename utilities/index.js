@@ -1,5 +1,9 @@
 const invModel = require("../models/inventory-model");
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
+
 const Util = {};
+
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -126,20 +130,61 @@ function handleErrors(handler) {
 }
 
 // WEEK 4 => build classificationList
-Util.buildClassificationList = async function () {
+Util.buildClassificationList = async function (classification_id = undefined) {
   let data = await invModel.getClassifications();
   console.log(data.rows)
-  let options = "";
+  let options = `<option value="" disabled selected>Select a Classification</option>`;
   data.rows.forEach((row) => {
+    if(classification_id === row.classification_id ){
+    options += `<option value="${row.classification_id}" selected>${row.classification_name}</option>`;
+
+    }
     options += `<option value="${row.classification_id}">${row.classification_name}</option>`;
   })
-   let select = `<select name="classification_id">${options}</select>`
+   let select = `<select name="classification_id" id="classificationList">${options}</select>`
 
   return select;
 };
 
 
 
+/* ****************************************
+* wek 5 => Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+   jwt.verify(
+    req.cookies.jwt,
+    process.env.ACCESS_TOKEN_SECRET,
+    function (err, accountData) {
+     if (err) {
+      req.flash("Please log in")
+      res.clearCookie("jwt")
+      return res.redirect("/account/login")
+     }
+     res.locals.accountData = accountData
+     res.locals.loggedin = 1
+     next()
+    })
+  } else {
+   next()
+  }
+ }
+
+
+ /* ****************************************
+ *  week =5> Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+
+ 
 module.exports = {
   ...Util, 
   handleErrors,

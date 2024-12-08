@@ -15,14 +15,16 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
+const generateErrorRoute = require("./routes/generateErrorRoute"); // week 3
 const accountRoute = require('./routes/accountRoute'); //week 4
 const bodyParser = require("body-parser") // week 4
-const generateErrorRoute = require("./routes/generateErrorRoute");
+const cookieParser = require("cookie-parser") // week 5
+
+// const management = require('./views/management')
 
 /* ***********************
  * Middleware
  * ************************/
-
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -46,6 +48,11 @@ app.use(function(req, res, next){
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+// week 5 login activity
+app.use(cookieParser())
+
+// week 5 login process activity
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * Routes
@@ -58,8 +65,10 @@ app.use(static)
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
-app.use('/account', accountRoute); // week 4
+app.use("/account", accountRoute); // week 4
 
+
+// app.use("/views", "./inventory/management") //week 5 => management.ejs 
 
 /* ***********************
  * Generate error week 3

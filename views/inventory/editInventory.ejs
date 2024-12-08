@@ -1,0 +1,52 @@
+<h1>Edit Inventory</h1>
+
+<% if (messages) { %>
+    <div class="flash-message">
+        <%= messages %>
+    </div>
+    <% } %>
+
+        <form action="/inv/update" method="POST" class="inventory-edit">
+            <label for="classificationList">Classification</label>
+            <%- classificationList %>
+
+                <label for="invMake">Make</label>
+                <input type="text" name="inv_make" id="invMake" required value="<%= inv_make || '' %>" />
+
+                <label for="invModel">Model</label>
+                <input type="text" name="inv_model" id="invModel" required value="<%= inv_model || '' %>" />
+
+                <label for="vehicle_description">Description:</label>
+                <textarea name="vehicle_description" id="vehicle_description" required
+                    placeholder="Describe the vehicle"><%= inv_description || '' %></textarea>
+
+                <label for="invImagePath">Image Path</label>
+                <input type="text" name="inv_image" id="invImagePath" required value="<%= inv_image || '' %>" />
+
+                <label for="invThumbnailPath">Thumbnail Path</label>
+                <input type="text" name="inv_thumbnail" id="invModel" required value="<%= inv_thumbnail || '' %>" />
+
+                <label for="invPrice">Price</label>
+                <input type="number" name="inv_price" id="invPrice" required value="<%= inv_price || '' %>" />
+
+                <label for="classification_id">Classification:</label>
+                <label for="invPrice">Price</label>
+                <input type="number" name="inv_price" id="invPrice" required value="<%= inv_price || '' %>" />
+
+                <label for="invYear">Year</label>
+                <input type="number" name="inv_year" id="invYear" required value="<%= inv_year || '' %>" />
+
+                <label for="invMiles">Miles</label>
+                <input type="number" name="inv_miles" id="invMiles" required value="<%= inv_miles || '' %>" />
+
+                <label for="invColor">Color</label>
+                <input type="text" name="inv_color" id="invModel" required value="<%= inv_color || '' %>" />
+
+                <button type="submit">Update Vehicle</button>
+
+                <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                    <% } %>>
+
+                <button type="submit" disabled>Update</button>
+        </form>
+        <script src="/js/inv-update.js"></script>
