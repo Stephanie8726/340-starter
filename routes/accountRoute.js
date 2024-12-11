@@ -9,9 +9,7 @@ const regValidate = require("../utilities/account-validation");
 router.get("/generate-error", errorController.generateError);
 
 // week4 => deliver login view
-router.get(
-  "/login", 
-  utilities.handleErrors(accountController.buildLogin));
+router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
 // week4 => deliver registration view
 router.get(
@@ -34,11 +32,40 @@ router.post(
   utilities.handleErrors(accountController.handleLogin)
 );
 
-// week 5 => account management view. JWT Authorization activity
+// week 5
 router.get(
   "/",
   utilities.checkLogin,
   utilities.handleErrors(accountController.buildManagement)
+);
+
+// week 5 => account management view. JWT Authorization activity
+// router.get(
+//   "/",
+//   utilities.checkLogin,
+//   utilities.handleErrors(accountController.buildManagement)
+// );
+
+// week 5 assignment => get the update account view
+router.get(
+  "/update/:account_id",
+  utilities.checkLogin,
+  accountController.updateAccountView
+);
+
+router.post(
+  "/update",
+  // regValidate.updateAccountRules(),
+  // regValidate.handleValidationErrors,
+  accountController.updateAccount
+);
+
+// Route to change password
+router.post(
+  "/change-password",
+  // regValidate.changePasswordRules(),
+  // regValidate.handleValidationErrors,
+  // accountController.changePassword
 );
 
 module.exports = router;

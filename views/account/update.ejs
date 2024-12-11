@@ -1,0 +1,39 @@
+<h1>Update Account Information</h1>
+
+<%- messages.notice %>
+
+    <form action="/account/update" method="POST">
+        <h2>Account Update</h2>
+
+        <div>
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" id="firstName" value="<%= accountData.first_name %>" required />
+        </div>
+
+        <div>
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" id="lastName" value="<%= accountData.last_name %>" required />
+        </div>
+
+        <div>
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" value="<%= accountData.email %>" required />
+        </div>
+
+        
+        <input type="hidden" name="account_id" value="<%= accountData.id %>" />
+
+        <button type="submit">Edit Account</button>
+    </form>
+
+    <form action="/account/change-password" method="POST">
+        <h2>Change Password</h2>
+
+        <label for="password">New Password</label>
+        <input type="password" name="password" id="password" required />
+        <small>Min 8 characters, at least 1 letter and 1 number</small>
+
+        <input type="hidden" name="account_id" value="<%= accountData.id %>" />
+
+        <button type="submit">Change Password</button>
+    </form>

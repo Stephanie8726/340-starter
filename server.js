@@ -90,7 +90,8 @@ app.use('/generate-error', generateErrorRoute)
 app.get("/", baseController.buildHome)
 
 // Inventory routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", utilities.checkLogin, utilities.checkAccountType, inventoryRoute)
+
 
 // week 4 - account routes
 app.use("/account", require("./routes/accountRoute"))

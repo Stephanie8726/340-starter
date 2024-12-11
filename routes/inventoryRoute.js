@@ -28,7 +28,7 @@ Unit 5, Select inv item activity
 * *************************************** */
 router.get(
   "/getInventory/:classification_id",
-  // utilities.checkAccountType,
+  utilities.checkAccountType,
   utilities.handleErrors(invController.getInventoryJSON)
 );
 
@@ -52,5 +52,8 @@ router.post(
   "/update/", 
   utilities.handleErrors(invController.updateInventory) // week 5
 );
+
+
+
 
 module.exports = router;

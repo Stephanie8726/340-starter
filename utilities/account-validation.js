@@ -120,45 +120,59 @@ validate.checkLoginData = async (req, res, next) => {
 }; 
 
 
-// validate.checkUpdateData = async (req, res, next) => {
-//   const errors = validationResult(req);
-  
-//   if (!errors.isEmpty()) {
-//     const nav = await utilities.getNav();
-//     return res.render("inventory/editInventory", {
-//       title: "Edit Inventory",
-//       errors: errors.array(),
-//       nav,
-//       ...req.body,
-//     });
-//   }
 
-//   next();
-// };
+/* ******************************
+ * week 5 assignemnt => validation
+ * ***************************** */
+const regValidate = {
+  // updating account details
+  updateAccountRules: () => [
+    body("email")
+      .isEmail().withMessage("Please enter a valid email address")
+      .normalizeEmail(),
+    body("name")
+      .notEmpty().withMessage("Name is required")
+      .trim()
+      .escape(),
+    // other fields that need to be validated for updating account
+    body("phone")
+      .optional()
+      .isMobilePhone().withMessage("Please enter a valid phone number"),
+  ],
 
-// Copy of checkInventoryData function but renamed to checkUpdateData
-function checkUpdateData(req, res, next) {
-  // Define validation rules
-  const { inv_make, inv_model, inv_description, inv_price, inv_year, inv_miles, inv_color, classification_id } = req.body;
+  // changing password validation
+  changePasswordRules: () => [
+    body("currentPassword")
+      .notEmpty().withMessage("Current password is required"),
+    body("newPassword")
+      .notEmpty().withMessage("New password is required")
+      .isLength({ min: 6 }).withMessage("Password must be at least 6 characters long"),
+    body("confirmPassword")
+      .notEmpty().withMessage("Please confirm your new password")
+      .custom((value, { req }) => value === req.body.newPassword)
+      .withMessage("Passwords do not match"),
+  ],
 
-  let errors = [];
+  // middleware to handle validation errors
+  handleValidationErrors: async (req, res, next) => {
+    const errors = validationResult(req);
+    
+    if (!errors.isEmpty()) {
+      // rendering the views
+      let nav = await utilities.getNav(); 
+      return res.status(400).render("account/update", {
+        errors: errors.array(),
+        nav,
+        title: "Update Account",
+        accountData: req.body,
+      });
+    }
+    
+    next();
+  },
+};
 
-  if (!inv_make || !inv_model || !inv_price || !inv_year) {
-    errors.push("Please fill out all required fields.");
-  }
-
-  // Return to edit view if errors are found
-  if (errors.length > 0) {
-    res.render("inventory/edit-inventory", {
-      title: "Edit Inventory Item",
-      errors: errors,
-      ...req.body, // Pass back the data including inv_id
-    });
-    return;
-  }
-
-  next();
-}
+module.exports = regValidate;
 
 
 

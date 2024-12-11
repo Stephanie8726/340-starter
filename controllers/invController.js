@@ -304,10 +304,10 @@ invCont.editInventoryView = async function (req, res, next) {
  * Week 5 => Delete vehicle 
  * ********************************************* */
 invCont.deleteInventory = async function (req, res, next) {
-  const { inv_id } = req.params; // Get the inventory ID from the URL
+  const { classification_id} = req.params; // Get the inventory ID from the URL
   
   // Delete vehicle using the model
-  const result = await invModel.deleteInventory(inv_id);
+  const result = await invModel.deleteInventory(classification_id);
 
   if (result) {
     req.flash("notice", "The vehicle was successfully deleted.");
@@ -317,7 +317,5 @@ invCont.deleteInventory = async function (req, res, next) {
     res.status(500).render("error", { message: "There was an issue deleting the vehicle." });
   }
 };
-
-module.exports = invCont;
 
 module.exports = invCont;
