@@ -155,7 +155,7 @@ async function buildManagement(req, res, next) {
       user: accountEmail,
       nav,
       accountType: accountData.account_type,
-      title: "You're logged in!",
+      title: "Account Management",
       messages: req.flash(),
       errors: null,
     });

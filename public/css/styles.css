@@ -278,7 +278,7 @@ form{
   border-radius: 6px;
 }
 
-.account label{
+.account label {
   display: block;
   padding-top: 1rem;
   font-size: .9rem;
@@ -345,6 +345,167 @@ form{
 .notice li {
   margin: 5px 0;
 }
+
+/* -----week 4 => add inventory form---- */
+.add-inventory form{
+  align-items: center;
+  margin: 1rem auto;
+  box-shadow: 1px 1px 4px #6ce7ba;
+  padding: 20px;
+  max-width: 500px;
+  height: 100vh;
+  border-radius: 6px;
+  min-height: 100%;
+}
+
+
+.add-inventory label{
+  display: block;
+  padding-top: 1rem;
+  font-size: .9rem;
+}
+
+.add-inventory input[type="text"],
+.add-inventory input[type="number"],
+.add-inventory select,
+.classification select
+{
+  background-color: #eee;
+  display: block;
+  border: solid 1px #999;
+  border-radius: 6px;
+  padding: .75rem;
+  width: 100%;
+  max-width: 400px;
+  appearance: none;
+}
+
+.add-inventory button, .inventory-edit [type="submit"]{
+  border: none;
+  background-image: linear-gradient(#69e8c6, #3bdfc7);
+  border-radius: 6px;
+  padding: .75rem;
+  margin-top: 20px;
+  box-shadow: 1px 1px 4px #999;
+  align-items: center;
+  font-weight: bold;
+  animation: fade 15s;
+  width: 400px; 
+}
+
+.add-inventory button, .inventory-edit[type="submit"]:hover {
+  transform: translateY(-2.5px); 
+  filter: brightness(1.2);
+  font-family: cursive;
+}
+
+
+/* -----week 4 => edit Inventory form----- */
+.inventory-edit form{
+  align-items: center;
+  margin: 1rem auto;
+  /* box-shadow: 1px 1px 4px #6ce7ba;
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 6px;
+  min-height: 100%; */
+}
+
+.inventory-edit label{
+  display: block;
+  padding-top: 1rem;
+  font-size: .9rem;
+}
+
+.inventory-edit input[type="text"],
+.inventory-edit input[type="number"],
+.inventory-edit select
+{
+  background-color: #eee;
+  display: block;
+  border: solid 1px #999;
+  border-radius: 6px;
+  padding: .75rem;
+  width: 100%;
+  max-width: 400px;
+  appearance: none;
+}
+.inventory-edit textarea {
+  background-color: #eee;
+  display: block;
+  border: solid 1px #999;
+  border-radius: 6px;
+  padding: .75rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.inventory-edit textarea::placeholder {
+  color: #999;
+  font-style: italic;
+  font-size: 0.9rem;
+  opacity: 1;
+}
+
+
+#inventoryDisplay thead th {
+  padding-top: 15px; /* Add space below the text */
+  font-size: 18px;
+  text-align: left;
+}
+
+#inventoryDisplay thead tr {
+  border-bottom: 2px solid #ccc; /* Optional: Add a border to separate header and body */
+}
+
+#inventoryDisplay td a:hover {
+  opacity: 0.8; 
+}
+
+/* Modify link */
+#inventoryDisplay td a[href*='edit'] {
+  color: green; 
+  line-height: 1.5;
+  border-radius: 4px;
+  margin-left: 25px;
+}
+
+/* Delete link */
+#inventoryDisplay td a[href*='delete'] {
+  color: red;
+  line-height: 1.5;
+  border-radius: 4px;
+  margin-left: 25px;
+}
+
+
+/* ----week 5 assignment = change password notes----- */
+.password_change {
+  font-size: 12px;
+  color: #666;
+}
+
+.management-style, .classification{
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px #999;
+  margin: 20px;
+  padding: 20px;
+}
+
+.management-style a {
+  color: #007BFF;
+  text-decoration: none; 
+}
+
+.management-style a:hover {
+  text-decoration: underline; 
+  font-size: 18px;
+}
+
+.management-style .notice {
+  color: red; 
+}
+
 
 @media screen and (max-width: 600px){
   .own-today-msg{

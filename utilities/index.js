@@ -132,7 +132,7 @@ function handleErrors(handler) {
 Util.buildClassificationList = async function (classification_id = undefined) {
   let data = await invModel.getClassifications();
   console.log(data.rows);
-  let options = `<option value="" disabled selected>Select a Classification</option>`;
+  let options = `<option value="" disabled selected>Select a Classification ▼ </option>`;
   data.rows.forEach((row) => {
     if (classification_id === row.classification_id) {
       options += `<option value="${row.classification_id}" selected>${row.classification_name}</option>`;
