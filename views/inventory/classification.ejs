@@ -1,10 +1,12 @@
 <% if (title) { %>
-    <main>
-        <h1><%= title %></h1>
-      </main>
-    <% } else { res.redirect('/') } %>
+  <main>
+    <h1>
+      <%= title %>
+    </h1>
+  </main>
+  <% } else { res.redirect('/') } %>
 
 
-        <%= messages %>
+    <%= messages %>
 
-        <%- grid %>
+      <%- grid %>

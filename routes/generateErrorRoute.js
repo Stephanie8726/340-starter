@@ -6,4 +6,3 @@ const errorController = require("../controllers/errorController"); // week 3 gen
 router.get("/", errorController.generateError);
 
 module.exports = router;
-

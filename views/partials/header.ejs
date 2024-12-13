@@ -14,6 +14,14 @@
           <% } %>
       </div>
 
+      <div id="contact">
+        <% if (!locals.accountData) { %>
+          <a title="Contact Us" href="/account/contactUs">Contact Us</a>
+          <% } %>
+      </div>
+
+
+
       <% if (locals.accountData) { %>
         <a href="/account/logout" title="Click to log out">Logout</a>
         <% } %>

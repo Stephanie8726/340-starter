@@ -1,0 +1,37 @@
+<h1>Contact Us</h1>
+
+<form action="/contact-us" method="POST">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required>
+  </div>
+  <div>
+    <label for="message">Message:</label>
+    <textarea name="message" id="message" rows="5" required></textarea>
+  </div>
+  <button type="submit">Send Message</button>
+</form>
+
+<br><br>
+
+<!-- display submitted messages -->
+<h2>Previous Messages</h2>
+<ul>
+  <% if (messages.length> 0) { %>
+    <% messages.forEach(function(message) { %>
+      <li>
+        <strong>
+          <%= message.name %>
+        </strong> (<%= message.email %>)<br>
+          <%= message.message %><br>
+            <small>Submitted on: <%= message.created_at %></small>
+      </li>
+      <% }); %>
+        <% } else { %>
+          <p>No messages yet.</p>
+          <% } %>
+</ul>

@@ -1,11 +1,9 @@
 <!-- Basic error handling -->
 <% if (title) {%>
 
-<h1><%= title %></h1>
-<% } else {
-res.redirected('/')
-} %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { res.redirected('/') } %>
 
-<%- message %>
-
-
+        <%- message %>

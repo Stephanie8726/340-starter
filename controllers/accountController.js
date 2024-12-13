@@ -9,7 +9,6 @@ require("dotenv").config(); // week 5
  * **************************************** */
 async function buildLogin(req, res, next) {
   let nav = await utilities.getNav();
-  console.log("=>", req.flash());
   res.render("account/login", {
     title: "Login",
     nav,
@@ -70,7 +69,6 @@ async function registerAccount(req, res) {
       "notice",
       `Congratulations, you\'re registered ${account_firstname}. Please log in.`
     );
-    // console.log("=> ", req.flash())
     res.status(201).render("account/login", {
       title: "Login",
       nav,
@@ -148,9 +146,8 @@ async function buildManagement(req, res, next) {
     const accountEmail = res.locals.accountData.account_email;
 
     const accountData = await accountModel.getAccountByEmail(accountEmail);
-    console.log(" =>", accountEmail);
-    console.log(" =>", accountData);
 
+    console.log("=>>>> accountData", accountData);
     res.render("account/management", {
       user: accountEmail,
       nav,
@@ -158,6 +155,7 @@ async function buildManagement(req, res, next) {
       title: "Account Management",
       messages: req.flash(),
       errors: null,
+      accountData: accountData,
     });
   } catch (err) {
     console.error("Error rendering management page:", err);
@@ -204,9 +202,6 @@ function checkUpdateData(req, res, next) {
   next();
 }
 
-/* ****************************************
- * Process Logout
- * ************************************ */
 async function accountLogout(req, res) {
   req.session.destroy((err) => {
     if (err) {
@@ -214,15 +209,14 @@ async function accountLogout(req, res) {
       return res.redirect("/account");
     }
     console.log("Session destroyed successfully");
-    res.clearCookie("sessionId");
+    res.clearCookie("jwt");
     res.redirect("/account/login");
   });
 }
 
 /* ****************************************
- * update account view
+ * week 5 assigning => updating account view
  * ************************************ */
-
 async function updateAccountView(req, res) {
   const { account_id } = req.params;
   const accountData = await accountModel.getAccountByID(account_id);
@@ -234,18 +228,19 @@ async function updateAccountView(req, res) {
   }
 
   res.render("account/update", {
+    nav,
+    errors: req.flash("errors"),
     title: "Update Account",
-    nav: nav,
     accountData: accountData,
   });
 }
-
 async function updateAccount(req, res) {
   const { firstName, lastName, email, account_id } = req.body;
+  const accountData = res.locals.accountData;
 
   try {
     const existingEmail = await accountModel.getAccountByEmail(email);
-    if (existingEmail && existingEmail.id !== account_id) {
+    if (existingEmail && existingEmail.account_id !== parseInt(account_id)) {
       req.flash("errors", "Email already in use");
       return res.redirect("back");
     }
@@ -256,12 +251,11 @@ async function updateAccount(req, res) {
       lastName,
       email
     );
-    req.session.accountData.firstName = firstName;
-    req.session.accountData.lastName = lastName;
-    req.session.accountData.email = email;
+
+    res.locals.accountData = await accountModel.getAccountByEmail(email);
 
     req.flash("message", "Account updated successfully");
-    res.redirect("/account/manage");
+    res.redirect("/account");
   } catch (err) {
     console.error(err);
     req.flash("errors", "Failed to update account");
@@ -269,19 +263,76 @@ async function updateAccount(req, res) {
   }
 }
 async function changePassword(req, res) {
-  const { password, account_id } = req.body;
+  const { account_password, account_id } = req.body;
+  const accountData = res.locals.accountData;
 
   try {
-    const hashedPassword = await utilities.hashPassword(password);
+    const hashedPassword = await bcrypt.hashSync(account_password, 10);
 
-    await accountModel.updatePassword(account_id, hashedPassword);
+    const result = await accountModel.updatePassword(
+      account_id,
+      hashedPassword
+    );
 
-    req.flash("message", "Password updated successfully");
-    res.redirect("/account/manage");
+    req.flash("notice", "Password updated successfully");
+    res.redirect("/account");
   } catch (err) {
     console.error(err);
     req.flash("errors", "Failed to change password");
     res.redirect("back");
+  }
+}
+
+/* ****************************************
+ *  Deliver Contact Us View
+ * **************************************** */
+async function buildContactUs(req, res, next) {
+  try {
+    let nav = await utilities.getNav(); // Assuming this utility function is used for navigation links
+    res.render("contactUs", {
+      title: "Contact Us",
+      nav,
+      errors: null,
+    });
+  } catch (err) {
+    console.error("Error rendering contact us page:", err);
+    next(err);
+  }
+}
+
+/* ****************************************
+ *  Handle Contact Form Submission
+ * **************************************** */
+async function handleContactForm(req, res, next) {
+  let nav = await utilities.getNav();
+  const { name, email, message } = req.body;
+
+  // Validate input fields
+  let errors = [];
+  if (!name || !email || !message) {
+    errors.push("All fields are required.");
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).render("contactUs", {
+      title: "Contact Us",
+      nav,
+      errors: errors,
+    });
+  }
+
+  try {
+    await ContactUs.create({ name, email, message });
+    req.flash("notice", "Your message has been submitted successfully.");
+    res.redirect("/thank-you");
+  } catch (err) {
+    console.error("Error saving contact message:", err);
+    req.flash("notice", "Sorry, there was an error submitting your message.");
+    res.status(500).render("contactUs", {
+      title: "Contact Us",
+      nav,
+      errors: null,
+    });
   }
 }
 
@@ -296,4 +347,6 @@ module.exports = {
   updateAccountView,
   updateAccount,
   changePassword,
+  buildContactUs,
+  handleContactForm,
 };

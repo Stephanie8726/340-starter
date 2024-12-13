@@ -4,6 +4,7 @@ const accountController = require("../controllers/accountController");
 const utilities = require("../utilities");
 const errorController = require("../controllers/errorController"); // week 3 generate-error
 const regValidate = require("../utilities/account-validation");
+const validate = require("../utilities/account-validation");
 
 // Route to intentionally generate an error
 router.get("/generate-error", errorController.generateError);
@@ -39,13 +40,6 @@ router.get(
   utilities.handleErrors(accountController.buildManagement)
 );
 
-// week 5 => account management view. JWT Authorization activity
-// router.get(
-//   "/",
-//   utilities.checkLogin,
-//   utilities.handleErrors(accountController.buildManagement)
-// );
-
 // week 5 assignment => get the update account view
 router.get(
   "/update/:account_id",
@@ -53,19 +47,28 @@ router.get(
   accountController.updateAccountView
 );
 
+// update account
 router.post(
   "/update",
-  // regValidate.updateAccountRules(),
-  // regValidate.handleValidationErrors,
+  regValidate.updateAccountRules(),
+  validate.checkAccountUpdateData,
   accountController.updateAccount
 );
 
-// Route to change password
+// change password
 router.post(
-  "/change-password",
-  // regValidate.changePasswordRules(),
-  // regValidate.handleValidationErrors,
-  // accountController.changePassword
+  "/passwordUpdate",
+  regValidate.updatePasswordRules(),
+  validate.checkUpdateAccountPassword,
+  accountController.changePassword
 );
+
+//account logout
+router.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.clearCookie("jwt");
+    res.redirect("/account/login");
+  });
+});
 
 module.exports = router;

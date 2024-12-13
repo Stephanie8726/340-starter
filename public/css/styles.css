@@ -147,6 +147,33 @@ footer{
   margin-top: 200px;
 }
 
+
+/* ------------MENU BUTTON FOR SMALLER SCREENS---------------- */
+#menu-button {
+  font-size: 25px;
+  border: 0;
+color: #fff;
+position: absolute;
+top: 40px;
+right: 25px;
+  background: none;
+}
+
+#menu::before {
+content: "☰";
+}
+
+#menu.open::before {
+content: "❌";
+  color: white;
+}
+
+.open a {
+display: block;
+}
+
+
+
 /* ============ Week3 - style for each car  ================= */
 /* classification view */
 .nav-menu {
@@ -404,11 +431,6 @@ form{
 .inventory-edit form{
   align-items: center;
   margin: 1rem auto;
-  /* box-shadow: 1px 1px 4px #6ce7ba;
-  padding: 20px;
-  max-width: 500px;
-  border-radius: 6px;
-  min-height: 100%; */
 }
 
 .inventory-edit label{
@@ -449,13 +471,13 @@ form{
 
 
 #inventoryDisplay thead th {
-  padding-top: 15px; /* Add space below the text */
+  padding-top: 15px; 
   font-size: 18px;
   text-align: left;
 }
 
 #inventoryDisplay thead tr {
-  border-bottom: 2px solid #ccc; /* Optional: Add a border to separate header and body */
+  border-bottom: 2px solid #ccc; 
 }
 
 #inventoryDisplay td a:hover {
@@ -506,6 +528,10 @@ form{
   color: red; 
 }
 
+.error{
+  color: red;
+}
+
 
 @media screen and (max-width: 600px){
   .own-today-msg{
@@ -550,6 +576,22 @@ form{
     flex: none;
     text-align: center; 
 }
+
+#menu-button {
+    display: none;
+}
+
+.nav {
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.nav a {
+    display: block;
+    flex: 1 1 100%;
+    margin-top: 0;
+}
+
 }
 
 

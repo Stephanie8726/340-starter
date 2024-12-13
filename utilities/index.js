@@ -160,7 +160,6 @@ Util.checkJWTToken = (req, res, next) => {
         }
         res.locals.accountData = accountData;
         res.locals.loggedin = 1;
-        console.log("=>>>>", JSON.stringify(res.locals));
         next();
       }
     );
@@ -191,10 +190,6 @@ Util.checkAccountType = (req, res, next) => {
   ) {
     next();
   } else {
-    // res.locals.accountData = null;
-    // res.locals.loggedin = 0;
-    // res.clearCookie("jwt")
-
     req.flash("notice", "You do not have permission to access this page.");
     return res.redirect("/account/login");
   }

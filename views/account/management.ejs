@@ -1,28 +1,29 @@
 <% if (title) { %>
     <div class="management-style">
-    <h1>
-        <%= title %>
-    </h1>
-    <% } else { %>
-        
-        <% } %>
+        <h1>
+            <%= title %>
+        </h1>
+        <% } else { %>
 
-            <%= messages.notice %>
+            <% } %>
 
-                <% if (loggedin) { %>
+                <%= messages.notice %>
 
-                    <h2>Welcome <%= accountData.account_firstname %></h2>
-                    <p>You're logged in!</p>
-                    
-                    <p><a href="/account/update/<%= accountData.account_id %>">Edit Account Information</a></p>
-                    
-                    <% if (accountType==='Employee' || accountType==='Admin' ) { %>
-                        <h3>Inventory Management</h3>
-                        <p><a href="/inv/addInventory">Inventory Management</a></p>
-                        <% } %>
+                    <% if (loggedin) { %>
 
-                            <% } else { %>
-                                <p>You need to be logged in to view your account management page.</p>
-                                <a href="/account/login">Login</a>
-                                <% } %>
+                        <h2>Welcome <%= accountData.account_firstname %>
+                        </h2>
+                        <p>You're logged in!</p>
+
+                        <p><a href="/account/update/<%= accountData.account_id %>">Edit Account Information</a></p>
+
+                        <% if (accountType==='Employee' || accountType==='Admin' ) { %>
+                            <h3>Inventory Management</h3>
+                            <p><a href="/inv/addInventory">Inventory Management</a></p>
+                            <% } %>
+
+                                <% } else { %>
+                                    <p>You need to be logged in to view your account management page.</p>
+                                    <a href="/account/login">Login</a>
+                                    <% } %>
     </div>

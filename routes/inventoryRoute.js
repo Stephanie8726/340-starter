@@ -21,7 +21,6 @@ router.get("/edit/:inv_id", invController.editInventoryView);
 router.get("/delete/:inv_id", invController.deleteInventory);
 router.get("/inv/:inventory_id", invController.getVehicleDetail);
 
-
 /* ****************************************
 * Get inventory for AJAX Route
 Unit 5, Select inv item activity
@@ -49,11 +48,8 @@ router.get(
 );
 
 router.post(
-  "/update/", 
+  "/update/",
   utilities.handleErrors(invController.updateInventory) // week 5
 );
-
-
-
 
 module.exports = router;

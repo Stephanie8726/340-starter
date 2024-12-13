@@ -1,37 +1,39 @@
 <%- messages.notice %>
 
+    <span class="error"><%- errors %></span>
+
     <form action="/account/update" method="POST" class="account">
         <h1>Edit Account</h1>
 
         <div>
             <label for="firstName">First Name</label>
-            <input type="text" name="firstName" id="firstName" value="<%= accountData.first_name %>" />
+            <input type="text" name="firstName" id="firstName" required value="<%= accountData.account_firstname %>" />
         </div>
 
         <div>
             <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" id="lastName" value="<%= accountData.last_name %>" />
+            <input type="text" name="lastName" id="lastName" required value="<%= accountData.account_lastname %>" />
         </div>
 
         <div>
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="<%= accountData.email %>" />
+            <input type="email" name="email" id="email" required value="<%= accountData.account_email %>" />
         </div>
 
-        <input type="hidden" name="account_id" value="<%= accountData.id %>" />
+        <input type="hidden" name="account_id" value="<%= accountData.account_id %>" />
 
         <div>
-        <button type="submit">Update</button>
+            <button type="submit">Update</button>
         </div>
     </form>
 
-    <form action="/account/change-password" method="POST" class="account">
+    <form action="/account/passwordUpdate" method="POST" class="account">
         <h2>Update Password</h2>
 
         <p class="password_change"><i>*Note: Your original password will be changed.</i></p>
 
         <label for="password">*Password:</label>
-        <input type="password" name="account_password" id="password"
+        <input type="password" required name="account_password" id="password"
             pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
         <div>
@@ -43,7 +45,7 @@
             <input type="checkbox" id="show-password"> Show Password
         </label>
 
-        <input type="hidden" name="account_id" value="<%= accountData.id %>" />
+        <input type="hidden" name="account_id" value="<%= accountData.account_id %>" />
 
 
         <button type="submit">Change Password</button>
