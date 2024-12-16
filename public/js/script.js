@@ -11,17 +11,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-// Code for the hamburger menu
-const menuButton = document.querySelector("#menu-button");
-const navigation = document.querySelector(".nav-header");
-
-menuButton.addEventListener("click", () => {
-  navigation.classList.toggle("open");
-
-  if (menuButton.textContent === "☰") {
-    menuButton.textContent = "❌";
-  } else {
-    menuButton.textContent = "☰";
-  }
-});

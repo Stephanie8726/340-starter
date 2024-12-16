@@ -148,39 +148,13 @@ footer{
 }
 
 
-/* ------------MENU BUTTON FOR SMALLER SCREENS---------------- */
-#menu-button {
-  font-size: 25px;
-  border: 0;
-color: #fff;
-position: absolute;
-top: 40px;
-right: 25px;
-  background: none;
-}
-
-#menu::before {
-content: "☰";
-}
-
-#menu.open::before {
-content: "❌";
-  color: white;
-}
-
-.open a {
-display: block;
-}
-
-
-
 /* ============ Week3 - style for each car  ================= */
 /* classification view */
 .nav-menu {
+  background-color: rgb(225, 218, 218);
   list-style: none;
   display: flex;
   gap: 15px;
-  color: white;
 }
 
 .nav-item {
@@ -189,12 +163,11 @@ display: block;
 
 .nav-link {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 .nav-link:hover {
   text-decoration: underline;
-  color: lightgray;
 }
 
 .vehicle-grid {
@@ -514,11 +487,6 @@ form{
   padding: 20px;
 }
 
-.management-style a {
-  color: #007BFF;
-  text-decoration: none; 
-}
-
 .management-style a:hover {
   text-decoration: underline; 
   font-size: 18px;
@@ -575,21 +543,6 @@ form{
    .vehicle-info-wrapper {
     flex: none;
     text-align: center; 
-}
-
-#menu-button {
-    display: none;
-}
-
-.nav {
-    justify-content: flex-end;
-    flex-direction: row;
-}
-
-.nav a {
-    display: block;
-    flex: 1 1 100%;
-    margin-top: 0;
 }
 
 }
